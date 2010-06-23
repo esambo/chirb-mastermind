@@ -10,6 +10,7 @@ module Mastermind
     end
     
     def guess(guess)
+      @messenger.puts ''
     end
   end
 end
