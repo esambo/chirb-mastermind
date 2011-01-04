@@ -1,4 +1,4 @@
-$: << File.join(File.dirname(__FILE__), *"/../lib")
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'rubygems'
-require 'spec'
+require 'rspec'
 require 'mastermind'
