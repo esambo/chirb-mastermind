@@ -5,12 +5,17 @@ module Mastermind
     end
     
     def start(secret_code)
+      @secret = secret_code
       @messenger.puts "Welcome to Mastermind!"
       @messenger.puts "Enter guess:"
     end
     
     def guess(guess)
-      @messenger.puts ''
+      if guess[0] == @secret[0]
+        @messenger.puts 'b'
+      else
+        @messenger.puts ''
+      end
     end
   end
 end
