@@ -11,21 +11,22 @@ module Mastermind
     end
     
     def guess(guess)
-      position_matches = number_of_position_matches(guess)
-      any_matches = number_of_any_color_matches(guess)
-      mark = 'b' * position_matches + 
-             'w' * (any_matches - position_matches)
-      @messenger.puts mark
+      @guess = guess
+      position_matches = number_of_position_matches
+      any_matches = number_of_any_color_matches
+      color_matches = any_matches - position_matches
+      @messenger.puts 'b' * position_matches + 
+                      'w' * color_matches
     end
     
-    def number_of_position_matches(guess)
+    def number_of_position_matches
       (0..@secret.count - 1).reduce(0) do |sum, e|
-        sum + (@secret[e] == guess[e] ? 1 : 0)
+        sum + (@secret[e] == @guess[e] ? 1 : 0)
       end
     end
     
-    def number_of_any_color_matches(guess)
-      guess.reduce(0) do |sum, e|
+    def number_of_any_color_matches
+      @guess.reduce(0) do |sum, e|
         sum + (@secret.include?(e) ? 1 : 0)
       end
     end
