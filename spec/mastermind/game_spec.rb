@@ -32,6 +32,12 @@ module Mastermind
           game.start(%w[r g y c])
           game.guess(%w[r w w w])
         end
+        
+        it 'matches color' do
+          messenger.should_receive(:puts).with('w')
+          game.start(%w[r g y c])
+          game.guess(%w[w w r w])
+        end
       end
     end
   end

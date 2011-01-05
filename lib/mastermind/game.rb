@@ -14,6 +14,8 @@ module Mastermind
       mark = ''
       if guess[0] == @secret[0]
         mark += 'b'
+      elsif @secret.include?(guess[2])
+        mark += 'w'
       end
       @messenger.puts mark
     end
