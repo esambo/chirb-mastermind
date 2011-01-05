@@ -26,7 +26,7 @@ module Mastermind
         end
       end
 
-      context '1 correct' do
+      context '1 color correct' do
         it 'matches color and position' do
           messenger.should_receive(:puts).with('b')
           game.start(%w[r g y c])
@@ -37,6 +37,14 @@ module Mastermind
           messenger.should_receive(:puts).with('w')
           game.start(%w[r g y c])
           game.guess(%w[w w r w])
+        end
+      end
+      
+      context '2 colors correct' do
+        it 'matches color and position' do
+          messenger.should_receive(:puts).with('bb')
+          game.start(%w[r g y c])
+          game.guess(%w[w g w c])
         end
       end
     end

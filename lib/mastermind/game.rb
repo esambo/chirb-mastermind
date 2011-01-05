@@ -12,10 +12,16 @@ module Mastermind
     
     def guess(guess)
       mark = ''
-      if guess[0] == @secret[0]
-        mark += 'b'
-      elsif @secret.include?(guess[2])
-        mark += 'w'
+      (0..@secret.count - 1).each do |i|
+        mark += 'b' if @secret[i] == guess[i]
+      end
+      found_matches = mark.length
+      if @secret.include?(guess[2])
+        if found_matches == 0
+          mark += 'w'
+        else
+          found_matches -= 1
+        end
       end
       @messenger.puts mark
     end
