@@ -18,7 +18,7 @@ end
 When /^I start a new game$/ do
   @messenger = StringIO.new
   game = Mastermind::Game.new(@messenger)
-  game.start
+  game.start(%w[r g y c])
 end
 
 When /^I break the code on on the (\d+.*) guess$/ do |guess_count|
