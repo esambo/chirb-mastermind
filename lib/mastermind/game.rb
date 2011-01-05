@@ -16,10 +16,12 @@ module Mastermind
       mark += 'b' * color_matches
       
       any_matches = 0
-      if @secret.include?(guess[2])
-        any_matches += 1
-        mark += 'w' * (any_matches - color_matches)
+      guess.each do |e|
+        if @secret.include?(e)
+          any_matches += 1
+        end
       end
+      mark += 'w' * (any_matches - color_matches)
       @messenger.puts mark
     end
     
