@@ -13,8 +13,7 @@ module Mastermind
     def guess(guess)
       @guess = guess
       position_matches = number_of_position_matches
-      any_matches = number_of_any_color_matches
-      color_matches = any_matches - position_matches
+      color_matches = number_of_any_color_matches - position_matches
       @messenger.puts 'b' * position_matches + 
                       'w' * color_matches
     end
