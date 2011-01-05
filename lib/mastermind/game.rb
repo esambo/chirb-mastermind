@@ -11,11 +11,11 @@ module Mastermind
     end
     
     def guess(guess)
+      mark = ''
       if guess[0] == @secret[0]
-        @messenger.puts 'b'
-      else
-        @messenger.puts ''
+        mark += 'b'
       end
+      @messenger.puts mark
     end
   end
 end
