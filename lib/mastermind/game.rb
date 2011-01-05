@@ -14,13 +14,11 @@ module Mastermind
       mark = ''
       color_matches = number_of_color_matches(guess)
       mark += 'b' * color_matches
-      found_matches = mark.length
+      
+      any_matches = 0
       if @secret.include?(guess[2])
-        if found_matches == 0
-          mark += 'w'
-        else
-          found_matches -= 1
-        end
+        any_matches += 1
+        mark += 'w' * (any_matches - color_matches)
       end
       @messenger.puts mark
     end
