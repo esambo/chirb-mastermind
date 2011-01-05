@@ -12,9 +12,8 @@ module Mastermind
     
     def guess(guess)
       mark = ''
-      (0..@secret.count - 1).each do |i|
-        mark += 'b' if @secret[i] == guess[i]
-      end
+      color_matches = number_of_color_matches(guess)
+      mark += 'b' * color_matches
       found_matches = mark.length
       if @secret.include?(guess[2])
         if found_matches == 0
@@ -24,6 +23,14 @@ module Mastermind
         end
       end
       @messenger.puts mark
+    end
+    
+    def number_of_color_matches(guess)
+      sum = 0
+      (0..@secret.count - 1).each do |i|
+        sum += 1 if @secret[i] == guess[i]
+      end
+      sum
     end
   end
 end
