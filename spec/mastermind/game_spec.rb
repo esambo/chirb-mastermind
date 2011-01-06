@@ -53,6 +53,14 @@ module Mastermind
           game.guess(%w[g w c w])
         end
       end
+      
+      context 'duplicates that match color' do
+        it 'matches color and position' do
+          messenger.should_receive(:puts).with('b')
+          game.start(%w[r g y c])
+          game.guess(%w[r r r r])
+        end
+      end
     end
   end
 end

@@ -11,32 +11,44 @@ Feature: code-breaker submits guess
   the position of a color in the secret code, a
   white peg is added to the mark.
 
+  Each position in the secret code can only be matched once.
+
   Scenario Outline: submit guess
     Given the secret code is <code>
     When I guess <guess>
     Then the mark should be <mark>
-
+  
   Scenarios: all colors correct
     | code    | guess   | mark |
     | r g y c | r g y c | bbbb |
     | r g y c | r g c y | bbww |
     | r g y c | y r g c | bwww |
     | r g y c | c r g y | wwww |
-
+  
   Scenarios: 3 colors correct
     | code    | guess   | mark |
     | r g y c | w g y c | bbb  |
     | r g y c | w r y c | bbw  |
     | r g y c | w r g c | bww  |
     | r g y c | w r g y | www  |
-
+  
   Scenarios: 2 colors correct
     | code    | guess   | mark |
     | r g y c | w g w c | bb   |
     | r g y c | w r w c | bw   |
     | r g y c | g w c w | ww   |
-
+  
   Scenarios: 1 color correct
     | code    | guess   | mark |
     | r g y c | r w w w | b    |
     | r g y c | w w r w | w    |
+  
+  Scenarios: duplicates in guess that match color in code
+    | code    | guess   | mark |
+    | r g y c | r r r r | b    |
+    | r g y c | w r r w | w    |
+    | r y g c | r y g g | bbb  |
+    | r y g c | r y c c | bbb  |
+    | r y g c | g y r g | bww  |
+  
+

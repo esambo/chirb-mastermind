@@ -25,9 +25,15 @@ module Mastermind
     end
     
     def number_of_any_color_matches
+      secret = @secret
       @guess.reduce(0) do |sum, e|
-        sum + (@secret.include?(e) ? 1 : 0)
+        sum + (delete_first(secret, e) ? 1 : 0)
       end
+    end
+    
+    def delete_first(secret, e)
+      i = secret.index(e)
+      secret.delete_at(i) if i
     end
   end
 end
